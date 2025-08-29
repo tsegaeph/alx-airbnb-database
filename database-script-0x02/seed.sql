@@ -1,39 +1,39 @@
--- Airbnb Database Sample Data
+-- Airbnb Database Sample Data (Customized Names)
 
 -- USERS
 INSERT INTO User (user_id, first_name, last_name, email, password_hash, phone_number, role)
 VALUES
-(UUID(), 'Alice', 'Johnson', 'alice@example.com', 'hash1', '1234567890', 'guest'),
-(UUID(), 'Bob', 'Smith', 'bob@example.com', 'hash2', '2345678901', 'host'),
-(UUID(), 'Charlie', 'Lee', 'charlie@example.com', 'hash3', '3456789012', 'guest'),
-(UUID(), 'Diana', 'Brown', 'diana@example.com', 'hash4', '4567890123', 'host');
+(UUID(), 'Tsega', 'Ephrem', 'tsega.ephrem@example.com', 'hash1', '1112223333', 'guest'),
+(UUID(), 'Tselot', 'Million', 'tselot.million@example.com', 'hash2', '2223334444', 'host'),
+(UUID(), 'Tsion', 'Mengist', 'tsion.mengist@example.com', 'hash3', '3334445555', 'guest'),
+(UUID(), 'Eden', 'Altaye', 'eden.altaye@example.com', 'hash4', '4445556666', 'host');
 
 -- PROPERTIES
 INSERT INTO Property (property_id, host_id, name, description, location, pricepernight)
 VALUES
-(UUID(), (SELECT user_id FROM User WHERE first_name='Bob'), 'Cozy Apartment', '2-bedroom apartment', 'New York', 120.00),
-(UUID(), (SELECT user_id FROM User WHERE first_name='Diana'), 'Beach House', '3-bedroom house with ocean view', 'California', 250.00);
+(UUID(), (SELECT user_id FROM User WHERE first_name='Tselot'), 'Downtown Loft', 'Modern loft in the city center', 'Addis Ababa', 150.00),
+(UUID(), (SELECT user_id FROM User WHERE first_name='Eden'), 'Mountain Cabin', 'Cozy cabin with mountain view', 'Bahir Dar', 200.00);
 
 -- BOOKINGS
 INSERT INTO Booking (booking_id, property_id, user_id, start_date, end_date, total_price, status)
 VALUES
-(UUID(), (SELECT property_id FROM Property WHERE name='Cozy Apartment'), (SELECT user_id FROM User WHERE first_name='Alice'), '2025-09-01', '2025-09-05', 480.00, 'confirmed'),
-(UUID(), (SELECT property_id FROM Property WHERE name='Beach House'), (SELECT user_id FROM User WHERE first_name='Charlie'), '2025-10-10', '2025-10-15', 1250.00, 'pending');
+(UUID(), (SELECT property_id FROM Property WHERE name='Downtown Loft'), (SELECT user_id FROM User WHERE first_name='Tsega'), '2025-09-15', '2025-09-20', 750.00, 'confirmed'),
+(UUID(), (SELECT property_id FROM Property WHERE name='Mountain Cabin'), (SELECT user_id FROM User WHERE first_name='Tsion'), '2025-10-05', '2025-10-10', 1000.00, 'pending');
 
 -- PAYMENTS
 INSERT INTO Payment (payment_id, booking_id, amount, payment_method)
 VALUES
-(UUID(), (SELECT booking_id FROM Booking WHERE total_price=480.00), 480.00, 'credit_card'),
-(UUID(), (SELECT booking_id FROM Booking WHERE total_price=1250.00), 1250.00, 'paypal');
+(UUID(), (SELECT booking_id FROM Booking WHERE total_price=750.00), 750.00, 'stripe'),
+(UUID(), (SELECT booking_id FROM Booking WHERE total_price=1000.00), 1000.00, 'paypal');
 
 -- REVIEWS
 INSERT INTO Review (review_id, property_id, user_id, rating, comment)
 VALUES
-(UUID(), (SELECT property_id FROM Property WHERE name='Cozy Apartment'), (SELECT user_id FROM User WHERE first_name='Alice'), 5, 'Great stay! Very clean.'),
-(UUID(), (SELECT property_id FROM Property WHERE name='Beach House'), (SELECT user_id FROM User WHERE first_name='Charlie'), 4, 'Beautiful view, nice host.');
+(UUID(), (SELECT property_id FROM Property WHERE name='Downtown Loft'), (SELECT user_id FROM User WHERE first_name='Tsega'), 5, 'Amazing loft! Very convenient location.'),
+(UUID(), (SELECT property_id FROM Property WHERE name='Mountain Cabin'), (SELECT user_id FROM User WHERE first_name='Tsion'), 4, 'Beautiful cabin, very peaceful.');
 
 -- MESSAGES
 INSERT INTO Message (message_id, sender_id, recipient_id, message_body)
 VALUES
-(UUID(), (SELECT user_id FROM User WHERE first_name='Alice'), (SELECT user_id FROM User WHERE first_name='Bob'), 'Hi, looking forward to my stay!'),
-(UUID(), (SELECT user_id FROM User WHERE first_name='Charlie'), (SELECT user_id FROM User WHERE first_name='Diana'), 'Hello! Can we confirm my booking?');
+(UUID(), (SELECT user_id FROM User WHERE first_name='Tsega'), (SELECT user_id FROM User WHERE first_name='Tselot'), 'Hello! Excited for my stay!'),
+(UUID(), (SELECT user_id FROM User WHERE first_name='Tsion'), (SELECT user_id FROM User WHERE first_name='Eden'), 'Hi, can we confirm my booking?');
