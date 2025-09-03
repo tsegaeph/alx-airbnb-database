@@ -1,10 +1,10 @@
 # Joins Queries
 
-This project contains SQL queries demonstrating different types of joins using the Airbnb database schema.
+This directory contains SQL queries demonstrating different types of joins using the Airbnb database schema.
 
 ## Files
 - `joins_queries.sql`: Contains queries for INNER JOIN, LEFT JOIN, and FULL OUTER JOIN.
-- `setup_airbnb.sql`: (Optional) Creates tables and inserts sample data for testing.
+- `setup_airbnb.sql`: (Optional) I used this to create tables and insert sample data for testing.
 
 ## Queries
 1. **INNER JOIN** → Get all bookings and the users who made them.  
