@@ -1,7 +1,6 @@
 
 -- Initial Query (Unoptimized)
-
--- Retrieves all bookings along with user, property, and payment details
+-- Retrieves all confirmed bookings after 2025-01-01
 SELECT 
     b.booking_id,
     b.start_date,
@@ -23,10 +22,11 @@ FROM bookings b
 INNER JOIN users u ON b.user_id = u.user_id
 INNER JOIN properties p ON b.property_id = p.property_id
 LEFT JOIN payments pay ON b.booking_id = pay.booking_id
+WHERE b.status = 'confirmed'
+  AND b.start_date >= '2025-01-01'
 ORDER BY b.booking_id;
 
--- Analyze Initial Query Performance
--- Use EXPLAIN ANALYZE to check query efficiency
+--Analyze Initial Query Performance
 EXPLAIN ANALYZE
 SELECT 
     b.booking_id,
@@ -49,11 +49,12 @@ FROM bookings b
 INNER JOIN users u ON b.user_id = u.user_id
 INNER JOIN properties p ON b.property_id = p.property_id
 LEFT JOIN payments pay ON b.booking_id = pay.booking_id
+WHERE b.status = 'confirmed'
+  AND b.start_date >= '2025-01-01'
 ORDER BY b.booking_id;
 
--- Optimized Query
-
--- Removes unnecessary columns and leverages indexes for faster joins
+--Optimized Query
+-- Select only necessary columns, uses indexes, filters applied
 SELECT 
     b.booking_id,
     b.start_date,
@@ -68,26 +69,4 @@ SELECT
     pay.payment_method
 FROM bookings b
 INNER JOIN users u ON b.user_id = u.user_id
-INNER JOIN properties p ON b.property_id = p.property_id
-LEFT JOIN payments pay ON b.booking_id = pay.booking_id
-ORDER BY b.booking_id;
-
---Analyze Optimized Query Performance
-EXPLAIN ANALYZE
-SELECT 
-    b.booking_id,
-    b.start_date,
-    b.end_date,
-    b.total_price AS booking_total,
-    u.first_name,
-    u.last_name,
-    u.email,
-    p.name AS property_name,
-    p.location,
-    pay.amount AS payment_amount,
-    pay.payment_method
-FROM bookings b
-INNER JOIN users u ON b.user_id = u.user_id
-INNER JOIN properties p ON b.property_id = p.property_id
-LEFT JOIN payments pay ON b.booking_id = pay.booking_id
-ORDER BY b.booking_id;
+INNER JOIN properties p ON b.property_id = p.p_
