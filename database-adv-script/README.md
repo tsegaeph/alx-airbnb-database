@@ -1,6 +1,6 @@
-# Joins Queries
+# joins_queries.sql
 
-This directory contains SQL queries demonstrating different types of joins using the Airbnb database schema.
+This file contains SQL queries demonstrating different types of joins using the Airbnb database schema.
 
 ## Files
 - `joins_queries.sql`: Contains queries for INNER JOIN, LEFT JOIN, and FULL OUTER JOIN.
@@ -11,6 +11,12 @@ This directory contains SQL queries demonstrating different types of joins using
 2. **LEFT JOIN** → Get all properties and their reviews, including properties without reviews.  
 3. **FULL OUTER JOIN** → Get all users and all bookings, even if a user has no booking or a booking is not linked to a user.
 
-## How to Run
-```bash
-psql -U postgres -d airbnb_db -f joins_queries.sql
+
+# Subqueries.sql
+
+This file contains two subqueries demonstrating:
+
+1. Non-correlated subquery: Properties with average rating > 4.0  
+2. Correlated subquery: Users with more than 3 bookings
+
+
