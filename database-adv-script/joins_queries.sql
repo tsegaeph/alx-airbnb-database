@@ -20,7 +20,8 @@ SELECT
     r.rating,
     r.comment
 FROM properties p
-LEFT JOIN reviews r ON p.property_id = r.property_id;
+LEFT JOIN reviews r ON p.property_id = r.property_id
+ORDER BY p.property_id, r.review_id;
 
 
 -- 3. FULL OUTER JOIN: Retrieve all users and all bookings
